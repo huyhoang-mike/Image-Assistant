@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            grid-template-rows: repeat(2, 1fr); /* Two rows */
+            gap: 20px; /* Gap between grid items */
+        }
+
+        .grid-item {
+            background-color: #f0f0f0;
+            padding: 80px;
+            text-align: center;
+        }
+
+        button{
+            position: relative;
+            border: 0;
+            display: inline-block;
+            width: 20rem;
+            height: auto;
+            font-size: x-large;
+            cursor: pointer;
+            outline: none;
+            background: transparent;
+        }
+
+        .text{
+            position: absolute;
+            inset: 0;
+            padding: 0.9rem 0;
+            margin-left: 1.85rem;
+            color: white;
+            line-height: 1.6;
+            text-align: center;
+            transition: all 0.4s ease;
+            font-weight: 900;
+        }
+
+        .title {
+            position: fixed;
+            top: 30px;
+            left: 20px;
+            color: black;
+            font-size: x-large;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="title"><b>IMAGE ASSISTANT WEB APPLICATION</b></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="grid-container">
+        <div class="grid-item">
+            <form action="{% url 'editing' %}">
+                <button>
+                    Editing Image
+                </button>
+            </form>
+        </div>
+        <div class="grid-item">
+            <form action="{% url 'similar' %}">
+                <button>
+                    Similar Image
+                </button>
+            </form>
+        </div>
+        <div class="grid-item">
+            <form action="{% url 'annotation' %}">
+                <button>
+                    Annotation Image
+                </button>
+            </form>
+        </div>
+        <div class="grid-item">
+            <form action="{% url 'maincontent' %}">
+                <button>
+                    Main Content Image
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
