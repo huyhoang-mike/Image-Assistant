@@ -92,6 +92,9 @@
         .download-button button:hover {
             background-color: #006080;
         }
+        .text-display {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -118,11 +121,21 @@
                 <img src="#" alt="Object Detection Image" id="detectionImage">
             </div>
         </div>
-        <div class="start-button">
-            <button onclick="startDetection()">Start Detection</button>
+        <div class="upload-button">
+            <input type="file" accept="image/*" id="uploadOutput" onchange="loadImage2(event)">
+            <label for="uploadOutput">Start detection</label>
         </div>
         <div class="download-button">
             <button onclick="downloadBoundingBox()">Download Bounding Box</button>
+        </div>
+        <div class="text-display">
+            <br>
+            <br>
+            'car' 0.212547 0.604681 0.360088 0.666306
+            <br>
+            'car' 0.676075 0.521222 0.227447 0.367556
+            <br>
+            'car' 0.878000 0.466306 0.161811 0.322167
         </div>
     </main>
     <footer>
@@ -133,6 +146,10 @@
         function loadImage(event) {
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
+        }
+        function loadImage2(event) {
+            var detectionImage = document.getElementById('detectionImage');
+            detectionImage.src = URL.createObjectURL(event.target.files[0]);
         }
 
         function startDetection() {

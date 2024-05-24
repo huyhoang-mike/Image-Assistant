@@ -119,8 +119,9 @@
                 <button onclick="applyBlur()">Blur</button>
                 <button onclick="reduceSize()">Reduce Size</button>
             </div>
-            <div class="download-button">
-                <button onclick="downloadImage()">Download Image</button>
+            <div class="upload-button">
+                <input type="file" accept="image/*" id="uploadOutput" onchange="saveImage(event)">
+                <label for="uploadOutput">Download</label>
             </div>
         </div>
     </main>
@@ -133,8 +134,9 @@
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
         }
-        function downloadImage() {
-            // Your logic to download the edited image
+        function saveImage(event) {
+            var editedImage = document.getElementById('editedImage');
+            editedImage.src = URL.createObjectURL(event.target.files[0]);
         }
     </script>
 </body>
