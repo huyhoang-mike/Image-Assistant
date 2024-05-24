@@ -3,89 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
     <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two columns */
-            grid-template-rows: repeat(2, 1fr); /* Two rows */
-            gap: 20px; /* Gap between grid items */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-
-        .grid-item {
-            background-color: #f0f0f0;
-            padding: 80px;
+        header {
+            background-color: #f2f2f2;
             text-align: center;
+            padding: 20px 0;
         }
-
-        button{
-            position: relative;
-            border: 0;
-            display: inline-block;
-            width: 20rem;
-            height: auto;
-            font-size: x-large;
-            cursor: pointer;
-            outline: none;
-            background: transparent;
+        nav {
+            background-color: #333;
         }
-
-        .text{
-            position: absolute;
-            inset: 0;
-            padding: 0.9rem 0;
-            margin-left: 1.85rem;
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav li {
+            flex: 1;
+        }
+        nav a {
+            display: block;
             color: white;
-            line-height: 1.6;
             text-align: center;
-            transition: all 0.4s ease;
-            font-weight: 900;
+            padding: 14px 16px;
+            text-decoration: none;
         }
-
-        .title {
-            position: fixed;
-            top: 30px;
-            left: 20px;
+        nav a:hover {
+            background-color: #ddd;
             color: black;
-            font-size: x-large;
-            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
-    <div class="title"><b>IMAGE ASSISTANT WEB APPLICATION</b></div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="grid-container">
-        <div class="grid-item">
-            <form action="{% url 'editing' %}">
-                <button>
-                    Editing Image
-                </button>
-            </form>
-        </div>
-        <div class="grid-item">
-            <form action="{% url 'similar' %}">
-                <button>
-                    Similar Image
-                </button>
-            </form>
-        </div>
-        <div class="grid-item">
-            <form action="{% url 'annotation' %}">
-                <button>
-                    Annotation Image
-                </button>
-            </form>
-        </div>
-        <div class="grid-item">
-            <form action="{% url 'maincontent' %}">
-                <button>
-                    Main Content Image
-                </button>
-            </form>
-        </div>
-    </div>
+    <header>
+        <h1>Image Assitant</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'editing' %}">Editing Image</a></li>
+            <li><a href="{% url 'ocr' %}">OCR</a></li>
+            <li><a href="{% url 'similar' %}">Similar Image</a></li>
+            <li><a href="{% url 'annotation' %}">Object Detection</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- Content goes here -->
+    </main>
+    <footer>
+        <p>&copy; 2024 Huy Hoang Nguyen</p>
+    </footer>
 </body>
 </html>

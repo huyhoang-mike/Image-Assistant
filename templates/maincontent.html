@@ -1,1 +1,136 @@
-<h1>Main content</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f2f2f2;
+            text-align: left;
+            padding: 20px 20px 20px 20px;
+            position: relative;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .image-container img {
+            max-width: 70%;
+            height: auto;
+        }
+        .edit-options {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .edit-options button {
+            margin: 0 10px;
+            padding: 10px;
+        }
+        .home-button a {
+            text-decoration: none;
+            color: #ddd;
+            padding: 10px 15px;
+            background-color: black;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .home-button a:hover {
+            background-color: #ccc;
+        }
+        .home-button a i {
+            margin-right: 5px;
+        }
+        .upload-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .upload-button input {
+            display: none;
+        }
+        .upload-button label {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .upload-button label:hover {
+            background-color: #45a049;
+        }
+        .text-display {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .ocr-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .ocr-button button {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .ocr-button button:hover {
+            background-color: #006080;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="home-button">
+            <a href="{% url 'home' %}">
+                <i class="fa fa-home"></i> Home
+            </a>
+        </div>
+        <h1>OCR Page</h1>
+    </header>
+    <main>
+        <div class="upload-button">
+            <input type="file" accept="image/*" id="uploadInput" onchange="loadImage(event)">
+            <label for="uploadInput">Upload Image</label>
+        </div>
+        <div class="image-container">
+            <h3>Original Image</h3>
+            <img src="#" alt="Original Image" id="originalImage">
+        </div>
+        <div class="ocr-button">
+            <button onclick="applyOCR()">Apply OCR</button>
+        </div>
+        <div class="text-display">
+            <h3>Text Display Area</h3>
+            <p id="ocrTextDisplay"></p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Huy Hoang Nguyen</p>
+    </footer>
+
+    <script>
+        function loadImage(event) {
+            var originalImage = document.getElementById('originalImage');
+            originalImage.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function applyOCR() {
+            // Your logic to apply OCR and display the text
+        }
+    </script>
+</body>
+</html>

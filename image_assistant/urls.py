@@ -4,9 +4,9 @@ from app import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', views.home, name='home'),
+    path('home', views.home, name='home'),
     path('editing', views.editing, name='editing'),
-    path('maincontent', views.maincontent, name='maincontent'),
+    path('ocr', views.maincontent, name='ocr'),
     path('annotation', views.annotation, name='annotation'),
     path('similar', views.similar, name='similar'),
 ]
