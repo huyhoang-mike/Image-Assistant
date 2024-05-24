@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-image: url("{% static '/images/backgrod.jpeg' %}");
+            background-size: cover;
         }
         header {
             background-color: #f2f2f2;
             text-align: center;
-            padding: 20px 0;
+            padding: 2px 0;
         }
         nav {
             background-color: #333;
@@ -63,8 +66,5 @@
     <main>
         <!-- Content goes here -->
     </main>
-    <footer>
-        <p>&copy; 2024 Huy Hoang Nguyen</p>
-    </footer>
 </body>
 </html>
