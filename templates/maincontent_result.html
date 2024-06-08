@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Editing</title>
+    <title>OCR Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@
             margin-top: 20px;
         }
         .image-container img {
-            max-width: 100%;
+            max-width: 70%;
             height: auto;
         }
         .edit-options {
@@ -72,18 +72,22 @@
         .upload-button label:hover {
             background-color: #45a049;
         }
-        .download-button {
+        .text-display {
             margin-top: 20px;
             text-align: center;
         }
-        .download-button button {
+        .ocr-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .ocr-button button {
             padding: 10px 20px;
             background-color: #008CBA;
             color: white;
             cursor: pointer;
             border-radius: 5px;
         }
-        .download-button button:hover {
+        .ocr-button button:hover {
             background-color: #006080;
         }
     </style>
@@ -95,34 +99,23 @@
                 <i class="fa fa-home"></i> Home
             </a>
         </div>
-        <h1>Image Editing Options</h1>
+        <h1>OCR Page</h1>
     </header>
     <main>
+        <div class="upload-button">
+            <input type="file" accept="image/*" id="uploadInput" onchange="loadImage(event)">
+            <label for="uploadInput">Upload Image</label>
+        </div>
         <div class="image-container">
-            <form action="{% url 'editing_result' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="imageFile"/>
-                <button type="submit" name="submit" value="Upload"></button>
-            </form>
-            <div>
-                <h3>Original Image</h3>
-                <img src="#" alt="Original Image" id="originalImage">
-            </div>
-            <div>
-                <h3>Edited Image</h3>
-                <img src="#" alt="Edited Image" id="editedImage">
-            </div>
-            <div class="edit-options">
-                <button onclick="applyGrayscale()">Grayscale</button>
-                <button onclick="applyHorizontalFlip()">Horizontal Flip</button>
-                <button onclick="applyVerticalFlip()">Vertical Flip</button>
-                <button onclick="applyAutoContrast()">Auto Contrast</button>
-                <button onclick="applyBlur()">Blur</button>
-                <button onclick="reduceSize()">Reduce Size</button>
-            </div>
-            <div class="download-button">
-                <button onclick="downloadImage()">Download Image</button>
-            </div>
+            <h3>Original Image</h3>
+            <img src="#" alt="Original Image" id="originalImage">
+        </div>
+        <div class="ocr-button">
+            <button onclick="applyOCR()">Apply OCR</button>
+        </div>
+        <div class="text-display">
+            <h3>Text Display Area</h3>
+            <p id="ocrTextDisplay"></p>
         </div>
     </main>
     <footer>
@@ -134,8 +127,9 @@
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
         }
-        function downloadImage() {
-            // Your logic to download the edited image
+
+        function applyOCR() {
+            // Your logic to apply OCR and display the text
         }
     </script>
 </body>

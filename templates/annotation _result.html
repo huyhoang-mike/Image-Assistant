@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Editing</title>
+    <title>Object Detection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,23 +23,6 @@
             background-color: #f2f2f2;
             text-align: center;
             padding: 10px 0;
-        }
-        .image-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        .edit-options {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .edit-options button {
-            margin: 0 10px;
-            padding: 10px;
         }
         .home-button a {
             text-decoration: none;
@@ -72,6 +55,29 @@
         .upload-button label:hover {
             background-color: #45a049;
         }
+        .image-display {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .image-display img {
+            max-width: 100%;
+            height: auto;
+        }
+        .start-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .start-button button {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .start-button button:hover {
+            background-color: #006080;
+        }
         .download-button {
             margin-top: 20px;
             text-align: center;
@@ -95,34 +101,28 @@
                 <i class="fa fa-home"></i> Home
             </a>
         </div>
-        <h1>Image Editing Options</h1>
+        <h1>Object Detection</h1>
     </header>
     <main>
-        <div class="image-container">
-            <form action="{% url 'editing_result' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="imageFile"/>
-                <button type="submit" name="submit" value="Upload"></button>
-            </form>
+        <div class="upload-button">
+            <input type="file" accept="image/*" id="uploadInput" onchange="loadImage(event)">
+            <label for="uploadInput">Upload Image</label>
+        </div>
+        <div class="image-display">
             <div>
                 <h3>Original Image</h3>
                 <img src="#" alt="Original Image" id="originalImage">
             </div>
             <div>
-                <h3>Edited Image</h3>
-                <img src="#" alt="Edited Image" id="editedImage">
+                <h3>Object Detection Image</h3>
+                <img src="#" alt="Object Detection Image" id="detectionImage">
             </div>
-            <div class="edit-options">
-                <button onclick="applyGrayscale()">Grayscale</button>
-                <button onclick="applyHorizontalFlip()">Horizontal Flip</button>
-                <button onclick="applyVerticalFlip()">Vertical Flip</button>
-                <button onclick="applyAutoContrast()">Auto Contrast</button>
-                <button onclick="applyBlur()">Blur</button>
-                <button onclick="reduceSize()">Reduce Size</button>
-            </div>
-            <div class="download-button">
-                <button onclick="downloadImage()">Download Image</button>
-            </div>
+        </div>
+        <div class="start-button">
+            <button onclick="startDetection()">Start Detection</button>
+        </div>
+        <div class="download-button">
+            <button onclick="downloadBoundingBox()">Download Bounding Box</button>
         </div>
     </main>
     <footer>
@@ -134,8 +134,13 @@
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
         }
-        function downloadImage() {
-            // Your logic to download the edited image
+
+        function startDetection() {
+            // Your logic to initiate object detection and display the result
+        }
+
+        function downloadBoundingBox() {
+            // Your logic to generate and download the bounding box coordinates
         }
     </script>
 </body>

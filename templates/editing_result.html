@@ -99,11 +99,10 @@
     </header>
     <main>
         <div class="image-container">
-            <form action="{% url 'editing_result' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="imageFile"/>
-                <button type="submit" name="submit" value="Upload"></button>
-            </form>
+            <div class="upload-button">
+                <input type="file" accept="image/*" id="uploadInput" onchange="loadImage(event)">
+                <label for="uploadInput">Upload Image</label>
+            </div>
             <div>
                 <h3>Original Image</h3>
                 <img src="#" alt="Original Image" id="originalImage">
@@ -122,6 +121,9 @@
             </div>
             <div class="download-button">
                 <button onclick="downloadImage()">Download Image</button>
+            </div>
+            <div>
+                <img src="data:image/jpeg;base64,{{ base64_encoded_image }}" alt="Processed Image">
             </div>
         </div>
     </main>

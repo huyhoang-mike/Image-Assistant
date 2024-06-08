@@ -1,5 +1,9 @@
+from multiprocessing import context
 from django.shortcuts import render
-
+from django.http import HttpResponse
+from PIL import Image  # Requires Pillow library
+import base64
+from io import BytesIO
 # Create your views here.
 
 def home(request):
@@ -16,3 +20,31 @@ def annotation(request):
 
 def similar(request):
     return render(request, 'similar.html', {})
+
+def editing_r(request):
+    if request.method == 'POST':
+        uploaded_image = request.FILES.get('imageFile')
+        if uploaded_image:
+            # Process the image (e.g., resize)
+            image = Image.open(uploaded_image)
+            resized_image = image.resize((200, 200))  # Example: Resize to 300x200
+            response = HttpResponse(content_type='image/jpeg')
+            resized_image.save(response, format='JPEG')
+            # Convert the resized image to base64
+            buffer = BytesIO()
+            resized_image.save(buffer, format="JPEG")
+            img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+            context = {
+                'base64_encoded_image': img_str,  # Pass the base64-encoded image
+            }
+            return render(request, 'editing_result.html', context)
+
+def maincontent_r(request):
+    return render(request, 'maincontent_result.html', {})
+
+def annotation_r(request):
+    return render(request, 'annotation_result.html', {})
+
+def similar_r(request):
+    return render(request, 'similar_result.html', {})
