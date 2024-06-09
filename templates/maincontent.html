@@ -127,10 +127,33 @@
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
         }
-
-        function applyOCR() {
-            // Your logic to apply OCR and display the text
+    
+        async function applyOCR() {
+            try {
+                // Your OCR logic (replace with actual implementation)
+                const imageFile = document.getElementById('uploadInput').files[0];
+                const formData = new FormData();
+                formData.append('image', imageFile);
+    
+                // Make a POST request to your API
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Error fetching OCR results');
+                }
+    
+                const ocrText = await response.text();
+    
+                // Update the text display area
+                document.getElementById('ocrTextDisplay').textContent = ocrText;
+            } catch (error) {
+                console.error('Error applying OCR:', error);
+            }
         }
     </script>
+    
 </body>
 </html>

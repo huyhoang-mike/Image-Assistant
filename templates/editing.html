@@ -55,29 +55,48 @@
         .home-button a i {
             margin-right: 5px;
         }
-        .upload-button {
+        .submit-button input[type="submit"]{
             margin-top: 20px;
             text-align: center;
         }
-        .upload-button input {
-            display: none;
-        }
-        .upload-button label {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
+        .submit-button input[type="submit"]{
+            border: 1px solid #008CBA; /* Green border */
+            background-color: #008CBA; /* Green background */
+            color: white; /* White text */
+            padding: 6px 12px;
             cursor: pointer;
             border-radius: 5px;
         }
-        .upload-button label:hover {
+        .submit-button input[type="submit"]:hover {
             background-color: #45a049;
         }
+        
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Style the custom label for the file input */
+        .custom-file-upload {
+            border: 1px solid #4CAF50; /* Green border */
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Hover effect */
+        .custom-file-upload:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
         .download-button {
             margin-top: 20px;
             text-align: center;
         }
         .download-button button {
             padding: 10px 20px;
+            border: 1px solid #008CBA;
             background-color: #008CBA;
             color: white;
             cursor: pointer;
@@ -99,11 +118,12 @@
     </header>
     <main>
         <div class="image-container">
-            <form action="{% url 'editing_result' %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'editing_result' %}" method="post" enctype="multipart/form-data" class="submit-button">
                 {% csrf_token %}
-                <input type="file" name="imageFile"/>
-                <button type="submit" name="submit" value="Upload"></button>
-            </form>
+                <label for="myFile" class="custom-file-upload">Choose File</label>
+                <input type="file" id="myFile" name="imageFile">
+                <input type="submit" value="Submit">
+            </form>     
             <div>
                 <h3>Original Image</h3>
                 <img src="#" alt="Original Image" id="originalImage">
@@ -113,12 +133,12 @@
                 <img src="#" alt="Edited Image" id="editedImage">
             </div>
             <div class="edit-options">
-                <button onclick="applyGrayscale()">Grayscale</button>
-                <button onclick="applyHorizontalFlip()">Horizontal Flip</button>
-                <button onclick="applyVerticalFlip()">Vertical Flip</button>
-                <button onclick="applyAutoContrast()">Auto Contrast</button>
-                <button onclick="applyBlur()">Blur</button>
-                <button onclick="reduceSize()">Reduce Size</button>
+                <button>Grayscale</button>
+                <button>Horizontal Flip</button>
+                <button>Vertical Flip</button>
+                <button>Auto Contrast</button>
+                <button>Blur</button>
+                <button>Reduce Size</button>
             </div>
             <div class="download-button">
                 <button onclick="downloadImage()">Download Image</button>

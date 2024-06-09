@@ -28,15 +28,18 @@ def editing_r(request):
             # Process the image (e.g., resize)
             image = Image.open(uploaded_image)
             resized_image = image.resize((200, 200))  # Example: Resize to 300x200
-            response = HttpResponse(content_type='image/jpeg')
-            resized_image.save(response, format='JPEG')
+            
             # Convert the resized image to base64
             buffer = BytesIO()
             resized_image.save(buffer, format="JPEG")
             img_str = base64.b64encode(buffer.getvalue()).decode('utf-8')
+            buffer = BytesIO()
+            image.save(buffer, format="JPEG")
+            img_str_ = base64.b64encode(buffer.getvalue()).decode('utf-8')
 
             context = {
-                'base64_encoded_image': img_str,  # Pass the base64-encoded image
+                'base64_encoded_image': img_str,  
+                'base64_encoded_image_': img_str_,
             }
             return render(request, 'editing_result.html', context)
 
