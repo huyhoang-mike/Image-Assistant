@@ -117,6 +117,11 @@
             <h3>Text Display Area</h3>
             <p id="ocrTextDisplay"></p>
         </div>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*"> <!-- Input field for image upload -->
+        <button type="submit">Upload</button> <!-- Submit button for the form -->
+    </form>
     </main>
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
