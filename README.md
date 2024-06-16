@@ -1,6 +1,5 @@
 Certainly! Here's the revised README.md with the integration of the additional information within the content:
 
-```markdown
 # Image Assistant using AWS
 
 ## Overview
@@ -21,7 +20,6 @@ The website offers the following functionalities:
 To clone the project, use the following command:
 ```bash
 git clone https://github.com/huyhoang-mike/image_assistant.git
-```
 
 ## Configuring AWS Credentials
 
@@ -54,6 +52,3 @@ For detailed instructions on setting up the API, Lambda functions, and dependenc
 The document contains a list of references to AWS documentation, libraries, and frameworks used in the project.
 
 For a more detailed understanding of the project and its technical aspects, please refer to the provided LaTeX document or visit the GitHub repository at [GitHub Repository](https://github.com/huyhoang-mike/image_assistant).
-```
-
-This revised README.md now includes detailed information on how to clone the project, configure AWS credentials, and set up the API, Lambda functions, and dependencies. If there are any further modifications or specific details you'd like to add, feel free to let me know!
