@@ -64,54 +64,41 @@
             max-width: 100%;
             height: auto;
         }
-        .result-display {
+        .start-button {
             margin-top: 20px;
             text-align: center;
         }
-        .custom-file-upload {
-            margin-bottom: 20px; /* Add margin between the two upload buttons */
-            border: 1px solid #4CAF50; /* Green border */
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            padding: 8px 16px; /* Adjust padding for smaller size */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Hover cursor */
-            margin-bottom: 20px; /* Add bottom margin for spacing */
-            display: block; /* Display as block element */
-            text-align: center; /* Center-align text */
-            max-width: 150px; /* Limit the maximum width */
-            margin: 10px auto; /* Center-align the element */
-        }
-        .custom-file-upload:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-        .upload-form input[type="file"] {
-            display: none; /* Hide the file input */
-        }
-        .upload-form label {
-            display: block; /* Display as block element */
-            text-align: center; /* Center-align text */
-        }
-        .upload-form input[type="submit"] {
+        .start-button button {
             padding: 10px 20px;
-            background-color: #008CBA; /* Blue background */
-            color: white; /* White text */
-            cursor: pointer; /* Hover cursor */
-            border-radius: 5px; /* Rounded corners */
-            display: block; /* Display as block element */
-            margin: 20px auto; /* Add margin for spacing and center-align */
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .start-button button:hover {
+            background-color: #006080;
+        }
+        .download-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .download-button button {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
             border: 1px solid white; /* White border */
         }
-        .upload-form input[type="submit"]:hover {
-            background-color: #006080; /* Darker blue on hover */
+        .download-button button:hover {
+            background-color: #006080;
         }
-        .upload-form {
-            text-align: center; /* Center-align the form */
-        }
-        .image-upload-container {
-            display: flex; /* Use flexbox for layout */
-            justify-content: space-between; /* Space items evenly */
-            margin-bottom: 20px; /* Add bottom margin for spacing */
+        pre {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow: auto; /* Enable scrolling for large content */
+            white-space: pre-wrap; /* Preserve line breaks */
         }
     </style>
 </head>
@@ -125,22 +112,26 @@
         <h1>Object Detection</h1>
     </header>
     <main>
-        <form action="{% url 'annotation_result' %}" method="post" enctype="multipart/form-data" class="upload-form">
-            {% csrf_token %}
-            <label for="myFile" class="custom-file-upload">Choose File</label>
-            <input type="file" id="myFile" name="imageFile" onchange="loadImage(event, 'imageFile')">
-            <input type="submit" value="DETECT">
-        </form>  
+        <div class="upload-button">
+            <input type="file" accept="image/*" id="uploadInput" onchange="loadImage(event)">
+            <label for="uploadInput">Upload Image</label>
+        </div>
         <div class="image-display">
             <div>
                 <h3>Original Image</h3>
-                <img src="#" alt="Original Image" id="originalImage">
+                <img src="data:image/jpeg;base64,{{ original }}" alt="Original Image" id="originalImage">
             </div>
             <div>
                 <h3>Object Detection Image</h3>
-                <img src="#" alt="Object Detection Image" id="detectionImage">
+                <img src="data:image/jpeg;base64,{{ transformed }}" alt="Object Detection Image" id="detectionImage">
             </div>
         </div>
+        <div class="download-button">
+            <button onclick="downloadBoundingBox()">Download Bounding Box</button>
+        </div>
+        
+        <pre id="json-content">{{ labels|safe }}</pre>
+
     </main>
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
@@ -150,6 +141,21 @@
         function loadImage(event) {
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function downloadBoundingBox() {
+            // JSON data from the HTML content
+            var jsonData = document.getElementById('json-content').textContent;
+
+            // Create a Blob from the JSON data
+            var blob = new Blob([jsonData], {type: "application/json"});
+
+            // Create a download link
+            var downloadLink = document.createElement("a");
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = "bounding_box_data.json";
+            downloadLink.click();
+            URL.revokeObjectURL(downloadLink.href);  // Clean up
         }
     </script>
 </body>

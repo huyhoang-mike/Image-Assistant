@@ -68,19 +68,50 @@
             margin-top: 20px;
             text-align: center;
         }
-        .compare-button {
-            margin-top: 20px;
-            text-align: center;
+        .custom-file-upload {
+            margin-bottom: 20px; /* Add margin between the two upload buttons */
+            border: 1px solid #4CAF50; /* Green border */
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 8px 16px; /* Adjust padding for smaller size */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Hover cursor */
+            margin-bottom: 20px; /* Add bottom margin for spacing */
+            display: block; /* Display as block element */
+            text-align: center; /* Center-align text */
+            max-width: 150px; /* Limit the maximum width */
+            margin: 10px auto; /* Center-align the element */
         }
-        .compare-button button {
+        .custom-file-upload:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        .upload-form input[type="file"] {
+            display: none; /* Hide the file input */
+        }
+        .upload-form label {
+            display: block; /* Display as block element */
+            text-align: center; /* Center-align text */
+        }
+        .upload-form input[type="submit"] {
             padding: 10px 20px;
-            background-color: #008CBA;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
+            background-color: #008CBA; /* Blue background */
+            color: white; /* White text */
+            cursor: pointer; /* Hover cursor */
+            border-radius: 5px; /* Rounded corners */
+            display: block; /* Display as block element */
+            margin: 20px auto; /* Add margin for spacing and center-align */
+            border: 1px solid white; /* White border */
         }
-        .compare-button button:hover {
-            background-color: #006080;
+        .upload-form input[type="submit"]:hover {
+            background-color: #006080; /* Darker blue on hover */
+        }
+        .upload-form {
+            text-align: center; /* Center-align the form */
+        }
+        .image-upload-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space items evenly */
+            margin-bottom: 20px; /* Add bottom margin for spacing */
         }
     </style>
 </head>
@@ -94,12 +125,20 @@
         <h1>Image Comparison</h1>
     </header>
     <main>
-        <div class="upload-button">
-            <input type="file" accept="image/*" id="uploadInput1" onchange="loadImage(event, 'image1')">
-            <label for="uploadInput1">Upload Image 1</label>
-            <input type="file" accept="image/*" id="uploadInput2" onchange="loadImage(event, 'image2')">
-            <label for="uploadInput2">Upload Image 2</label>
-        </div>
+        <form action="{% url 'similar_result' %}" method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %} <!-- Django's template tag for CSRF protection token -->
+            
+            <!-- The first file input for image 1 -->
+            <label for="uploadInput1" class="custom-file-upload">Upload Image 1</label>
+            <input type="file" accept="image/*" id="uploadInput1" name="image1" onchange="loadImage(event, 'image1')">
+            
+            <!-- The second file input for image 2 -->
+            <label for="uploadInput2" class="custom-file-upload">Upload Image 2</label>
+            <input type="file" accept="image/*" id="uploadInput2" name="image2" onchange="loadImage(event, 'image2')">
+            
+            <!-- The submit button for the form -->
+            <input type="submit" value="COMPARE">
+        </form>
         <div class="image-display">
             <div>
                 <h3>Image 1</h3>
@@ -114,9 +153,6 @@
             <h3>Similarity Result</h3>
             <p id="similarityResult">-</p>
         </div>
-        <div class="compare-button">
-            <button onclick="compareImages()">Compare</button>
-        </div>
     </main>
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
@@ -126,10 +162,6 @@
         function loadImage(event, target) {
             var imageDisplay = document.getElementById('imageDisplay' + target.charAt(target.length - 1));
             imageDisplay.src = URL.createObjectURL(event.target.files[0]);
-        }
-
-        function compareImages() {
-            // Your logic to compare the images and display the similarity result
         }
     </script>
 </body>

@@ -55,48 +55,29 @@
         .home-button a i {
             margin-right: 5px;
         }
-        .submit-button input[type="submit"]{
+        .upload-button {
             margin-top: 20px;
             text-align: center;
         }
-        .submit-button input[type="submit"]{
-            border: 1px solid #008CBA; /* Green border */
-            background-color: #008CBA; /* Green background */
-            color: white; /* White text */
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .submit-button input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        
-        input[type="file"] {
+        .upload-button input {
             display: none;
         }
-
-        /* Style the custom label for the file input */
-        .custom-file-upload {
-            border: 1px solid #4CAF50; /* Green border */
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            padding: 6px 12px;
+        .upload-button label {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
             cursor: pointer;
             border-radius: 5px;
         }
-
-        /* Hover effect */
-        .custom-file-upload:hover {
-            background-color: #45a049; /* Darker green on hover */
+        .upload-button label:hover {
+            background-color: #45a049;
         }
-
         .download-button {
             margin-top: 20px;
             text-align: center;
         }
         .download-button button {
             padding: 10px 20px;
-            border: 1px solid #008CBA;
             background-color: #008CBA;
             color: white;
             cursor: pointer;
@@ -104,19 +85,6 @@
         }
         .download-button button:hover {
             background-color: #006080;
-        }
-        #transformationSelect {
-            padding: 10px; /* Add padding for spacing */
-            border: 1px solid #ccc; /* Add a border */
-            border-radius: 5px; /* Add border radius for a more attractive appearance */
-            width: 150px; /* Set the width of the dropdown list */
-            background-color: #f2f2f2; /* Add a light background color */
-            color: #333; /* Set the text color */
-            font-size: 16px; /* Set the font size */
-            cursor: pointer; /* Change the cursor to a pointer on hover */
-        }
-        #transformationSelect:hover {
-            background-color: #e6e6e6; /* Darken the background color on hover */
         }
     </style>
 </head>
@@ -131,27 +99,16 @@
     </header>
     <main>
         <div class="image-container">
-            <form action="{% url 'editing_result' %}" method="post" enctype="multipart/form-data" class="submit-button">
-                {% csrf_token %}
-                <label for="myFile" class="custom-file-upload">Choose File</label>
-                <input type="file" id="myFile" name="imageFile" onchange="loadImage(event, 'imageFile')">
-                <select name="transformation" id="transformationSelect">
-                    <option value="original">Original</option>
-                    <option value="vflip">Vertical Flip</option>
-                    <option value="hflip">Horizontal Flip</option>
-                    <option value="gray">Grayscale</option>
-                    <option value="contrast">Autocontrast</option>
-                    <option value="blur">Blur</option>
-                </select>
-                <input type="submit" value="Submit">
-            </form>     
             <div>
                 <h3>Original Image</h3>
-                <img src="#" alt="Original Image" id="originalImage">
+                <img src="data:image/jpeg;base64,{{ orignal }}" alt="Original Image">
             </div>
             <div>
                 <h3>Edited Image</h3>
-                <img src="#" alt="Edited Image" id="editedImage">
+                <img src="data:image/jpeg;base64,{{ processed }}" alt="Edited Image" id="editedImage">
+            </div>
+            <div class="download-button">
+                <button onclick="downloadImage()">Download Image</button>
             </div>
         </div>
     </main>
@@ -163,6 +120,15 @@
         function loadImage(event) {
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
+        }
+        function downloadImage() {
+            var editedImageSrc = document.getElementById('editedImage').src;
+            var link = document.createElement('a');
+            link.href = editedImageSrc;
+            link.download = 'edited_image.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>

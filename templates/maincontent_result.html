@@ -72,10 +72,6 @@
         .upload-button label:hover {
             background-color: #45a049;
         }
-        .text-display {
-            margin-top: 20px;
-            text-align: center;
-        }
         .ocr-button {
             margin-top: 20px;
             text-align: center;
@@ -90,50 +86,31 @@
         .ocr-button button:hover {
             background-color: #006080;
         }
-        .custom-file-upload {
-            margin-bottom: 20px; /* Add margin between the two upload buttons */
-            border: 1px solid #4CAF50; /* Green border */
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            padding: 8px 16px; /* Adjust padding for smaller size */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Hover cursor */
-            margin-bottom: 20px; /* Add bottom margin for spacing */
-            display: block; /* Display as block element */
-            text-align: center; /* Center-align text */
-            max-width: 150px; /* Limit the maximum width */
-            margin: 10px auto; /* Center-align the element */
+        .text-display {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc; /* Add a border */
+            border-radius: 5px;
+            white-space: pre-wrap; /* Preserve line breaks */
+            word-wrap: break-word; /* Wrap long words */
         }
-        .custom-file-upload:hover {
-            background-color: #45a049; /* Darker green on hover */
+
+        /* Style the download button */
+        .download-button {
+            margin-top: 20px;
+            text-align: center;
         }
-        .upload-form input[type="file"] {
-            display: none; /* Hide the file input */
-        }
-        .upload-form label {
-            display: block; /* Display as block element */
-            text-align: center; /* Center-align text */
-        }
-        .upload-form input[type="submit"] {
+        .download-button button {
             padding: 10px 20px;
-            background-color: #008CBA; /* Blue background */
-            color: white; /* White text */
-            cursor: pointer; /* Hover cursor */
-            border-radius: 5px; /* Rounded corners */
-            display: block; /* Display as block element */
-            margin: 20px auto; /* Add margin for spacing and center-align */
-            border: 1px solid white; /* White border */
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
-        .upload-form input[type="submit"]:hover {
-            background-color: #006080; /* Darker blue on hover */
-        }
-        .upload-form {
-            text-align: center; /* Center-align the form */
-        }
-        .image-upload-container {
-            display: flex; /* Use flexbox for layout */
-            justify-content: space-between; /* Space items evenly */
-            margin-bottom: 20px; /* Add bottom margin for spacing */
+        .download-button button:hover {
+            background-color: #006080;
         }
     </style>
 </head>
@@ -147,15 +124,16 @@
         <h1>OCR Page</h1>
     </header>
     <main>
-        <form action="{% url 'ocr_result' %}" method="post" enctype="multipart/form-data" class="upload-form">
-            {% csrf_token %}
-            <label for="myFile" class="custom-file-upload">Choose File</label>
-            <input type="file" id="myFile" name="imageFile" onchange="loadImage(event, 'imageFile')">
-            <input type="submit" value="EXTRACT">
-        </form>
         <div class="image-container">
             <h3>Original Image</h3>
-            <img src="#" alt="Original Image" id="originalImage">
+            <img src="data:image/jpeg;base64,{{ img_str }}" alt="Original Image" id="originalImage">
+        </div>
+        <div class="text-display">
+            <h3>Extracted Text:</h3>
+            <p id="ocrTextDisplay">{{ text_extract }}</p>
+        </div>
+        <div class="download-button">
+            <button onclick="downloadText()">Download Text</button>
         </div>
     </main>
     <footer>
@@ -167,7 +145,16 @@
             var originalImage = document.getElementById('originalImage');
             originalImage.src = URL.createObjectURL(event.target.files[0]);
         }
+        function downloadText() {
+            var textContent = document.getElementById('ocrTextDisplay').textContent;
+            var blob = new Blob([textContent], { type: 'text/plain' });
+
+            var downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'extracted_text.txt';
+            downloadLink.click();
+            URL.revokeObjectURL(downloadLink.href);  // Clean up
+        }
     </script>
-    
 </body>
 </html>
