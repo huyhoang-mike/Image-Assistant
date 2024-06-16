@@ -20,7 +20,7 @@ The website offers the following functionalities:
 To clone the project, use the following command:
 ```bash
 git clone https://github.com/huyhoang-mike/image_assistant.git
-
+```
 ## Configuring AWS Credentials
 
 Before setting up the API, Lambda, and dependencies, ensure that you have configured your AWS credentials. You can set your `aws_access_key_id` and `aws_secret_access_key` using the AWS Command Line Interface (CLI) or by creating a credentials file.
