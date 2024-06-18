@@ -52,7 +52,6 @@ footer {
 .submit-button input[type="submit"]:hover {
     background-color: #45a049;
 }
-
 input[type="file"] {
     display: none;
 }
@@ -116,16 +115,12 @@ nav a:hover {
     margin: 0 10px;
     padding: 10px;
 }
-
 .image-upload-container {
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Space items evenly */
     margin-bottom: 20px; /* Add bottom margin for spacing */
 }
-.result-display {
-    margin-top: 20px;
-    text-align: center;
-}
+
 .custom-file-upload {
     margin-bottom: 20px; /* Add margin between the two upload buttons */
     border: 1px solid #4CAF50; /* Green border */
@@ -242,10 +237,7 @@ pre {
     max-width: 100%;
     height: auto;
 }
-.result-display {
-    margin-top: 20px;
-    text-align: center;
-}
+
 .compare-button {
     margin-top: 20px;
     text-align: center;
