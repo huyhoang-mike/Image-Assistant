@@ -45,11 +45,6 @@
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
     </footer>
-    <script>
-        function loadImage(event) {
-            var originalImage = document.getElementById('originalImage');
-            originalImage.src = URL.createObjectURL(event.target.files[0]);
-        }
-    </script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

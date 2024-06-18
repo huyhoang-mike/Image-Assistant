@@ -314,3 +314,10 @@ pre {
 .download-button button:hover {
     background-color: #006080;
 }
+.backgr {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("{% static '/images/backgrod.jpeg' %}");
+    background-size: cover;
+}

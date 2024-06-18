@@ -32,22 +32,6 @@
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
     </footer>
-
-    <script>
-        function loadImage(event) {
-            var originalImage = document.getElementById('originalImage');
-            originalImage.src = URL.createObjectURL(event.target.files[0]);
-        }
-        function downloadText() {
-            var textContent = document.getElementById('ocrTextDisplay').textContent;
-            var blob = new Blob([textContent], { type: 'text/plain' });
-
-            var downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'extracted_text.txt';
-            downloadLink.click();
-            URL.revokeObjectURL(downloadLink.href);  // Clean up
-        }
-    </script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

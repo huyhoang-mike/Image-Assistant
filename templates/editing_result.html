@@ -34,21 +34,6 @@
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
     </footer>
-
-    <script>
-        function loadImage(event) {
-            var originalImage = document.getElementById('originalImage');
-            originalImage.src = URL.createObjectURL(event.target.files[0]);
-        }
-        function downloadImage() {
-            var editedImageSrc = document.getElementById('editedImage').src;
-            var link = document.createElement('a');
-            link.href = editedImageSrc;
-            link.download = 'edited_image.jpg';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

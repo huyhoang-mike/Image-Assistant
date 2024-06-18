@@ -41,27 +41,6 @@
     <footer>
         <p>&copy; 2024 Huy Hoang Nguyen</p>
     </footer>
-
-    <script>
-        function loadImage(event) {
-            var originalImage = document.getElementById('originalImage');
-            originalImage.src = URL.createObjectURL(event.target.files[0]);
-        }
-
-        function downloadBoundingBox() {
-            // JSON data from the HTML content
-            var jsonData = document.getElementById('json-content').textContent;
-
-            // Create a Blob from the JSON data
-            var blob = new Blob([jsonData], {type: "application/json"});
-
-            // Create a download link
-            var downloadLink = document.createElement("a");
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = "bounding_box_data.json";
-            downloadLink.click();
-            URL.revokeObjectURL(downloadLink.href);  // Clean up
-        }
-    </script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
