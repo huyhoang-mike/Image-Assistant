@@ -120,7 +120,6 @@ nav a:hover {
     justify-content: space-between; /* Space items evenly */
     margin-bottom: 20px; /* Add bottom margin for spacing */
 }
-
 .custom-file-upload {
     margin-bottom: 20px; /* Add margin between the two upload buttons */
     border: 1px solid #4CAF50; /* Green border */
