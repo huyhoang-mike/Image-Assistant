@@ -1,5 +1,3 @@
-Certainly! Here's the revised README.md with the integration of the additional information within the content:
-
 # Image Assistant using AWS
 
 ## Overview
