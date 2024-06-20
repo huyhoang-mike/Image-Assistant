@@ -4,7 +4,7 @@ Certainly! Here's the revised README.md with the integration of the additional i
 
 ## Overview
 
-The Image Assistant project aims to provide a user-friendly web platform for image analysis and editing. It leverages a combination of front-end technologies such as HTML, CSS Bootstrap, and back-end framework Django Python. The project integrates various AWS services to enhance its functionality, including S3 for object storage, Lambda functions for serverless image processing, API Gateway for secure interaction, Rekognition for image analysis, EC2 for computational capabilities, and CloudWatch for monitoring resource usage.
+The Image Assistant project aims to provide a user-friendly web platform for image analysis and editing. It leverages a combination of front-end technologies such as HTML, CSS, Javascript, and back-end framework Django Python. The project integrates various AWS services to enhance its functionality, including S3 for object storage, Lambda functions for serverless image processing, API Gateway for secure interaction, Rekognition for image analysis, EC2 for computational capabilities, and CloudWatch for monitoring resource usage.
 
 ## Functionality
 
@@ -47,8 +47,5 @@ aws configure
 
 For detailed instructions on setting up the API, Lambda functions, and dependencies, please refer to the project's documentation or the AWS documentation.
 
-## References
-
-The document contains a list of references to AWS documentation, libraries, and frameworks used in the project.
-
-For a more detailed understanding of the project and its technical aspects, please refer to the provided LaTeX document or visit the GitHub repository at [GitHub Repository](https://github.com/huyhoang-mike/image_assistant).
+## Demo
+![deploy](https://github.com/huyhoang-mike/Image-Assistant/assets/109945762/ea6cd74e-9c59-48d8-8207-7b8d77d67c17)
