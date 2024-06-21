@@ -45,5 +45,11 @@ aws configure
 
 For detailed instructions on setting up the API, Lambda functions, and dependencies, please refer to the project's documentation or the AWS documentation.
 
-## Homepage
-![deploy](https://github.com/huyhoang-mike/Image-Assistant/assets/109945762/ea6cd74e-9c59-48d8-8207-7b8d77d67c17)
+## Implementation
+
+
+https://github.com/huyhoang-mike/Image-Assistant/assets/109945762/d68a8eef-ff6e-451b-9aff-63bebcbf9340
+
+
+
+
