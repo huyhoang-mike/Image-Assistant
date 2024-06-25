@@ -14,7 +14,7 @@ import requests
 # Create your views here.
 
 def compare(img1, img2):
-    API_ENDPOINT = 'https://1whgs598d1.execute-api.us-east-1.amazonaws.com/try'
+    API_ENDPOINT = 'api_endpoint'
 
     # Encode image 1
     buffer1 = io.BytesIO()
@@ -38,7 +38,7 @@ def compare(img1, img2):
     return ssim
 
 def editAPI(img, desciption):
-    API_ENDPOINT = 'https://dk4epgv39d.execute-api.us-east-1.amazonaws.com/test'
+    API_ENDPOINT = 'api_endpoint'
 
     buffer1 = io.BytesIO()
     img.save(buffer1, format="JPEG")
