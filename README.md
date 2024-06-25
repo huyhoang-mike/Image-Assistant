@@ -21,27 +21,12 @@ git clone https://github.com/huyhoang-mike/image_assistant.git
 ```
 ## Configuring AWS Credentials
 
-Before setting up the API, Lambda, and dependencies, ensure that you have configured your AWS credentials. You can set your `aws_access_key_id` and `aws_secret_access_key` using the AWS Command Line Interface (CLI) or by creating a credentials file.
+Before setting up the API, Lambda, and dependencies, ensure that you have configured your AWS credentials. You can set your `aws_access_key_id` and `aws_secret_access_key` directly on the code. Then run the command to runserver as well as make the forward port 8000 public.
 
 ```bash
-aws configure
+python3 manage.py runserver 0.0.0.0:8000
 ```
 
-## Setting up API, Lambda, and Dependencies
-
-1. **API Gateway:** Create a new API in the API Gateway console to define the HTTP endpoints for your application.
-
-2. **Lambda Functions:** Set up Lambda functions to handle various image processing tasks and integrate them with your API.
-
-3. **AWS S3:** Use S3 buckets for storing essential dependencies such as EasyOCR, OpenCV, Skimage, and numpy within the Image Assistant framework.
-
-4. **AWS Rekognition:** Leverage Rekognition services for predicting labels, classes, and bounding boxes within uploaded images.
-
-5. **AWS EC2:** Utilize EC2 instances to augment the computational capabilities of the Image Assistant architecture.
-
-6. **AWS CloudWatch:** Set up CloudWatch for monitoring resource usage and expenditure, ensuring cost-effective operation of the Image Assistant website.
-
-7. **Dependencies:** Ensure all necessary libraries and frameworks, such as EasyOCR, OpenCV, and skimage Python, are properly installed and configured within the project environment.
 
 For detailed instructions on setting up the API, Lambda functions, and dependencies, please refer to the project's documentation or the AWS documentation.
 
